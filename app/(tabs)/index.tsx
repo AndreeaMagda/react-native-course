@@ -1,17 +1,21 @@
-import { View, Text, Image, ScrollView } from 'react-native';
+import { View, Text, Button } from 'react-native';
+import React, { useState } from 'react';
 
 export default function HomeScreen() {
+  const [pressedCount, setPressedCount] = useState(0);
+
   return (
-    <View style={{ flex: 1, justifyContent: 'center' }}>
-      <Text style={{ fontSize: 24, textAlign: 'center' }}>Scroll me!</Text>
-      <View style={{ height: 400, backgroundColor: '#e5e5e5' }}>
-        {/* This is our scrollable area */}
-        <ScrollView>
-          <View style={{ width: 300, height: 300, backgroundColor: 'red' }} />
-          <View style={{ width: 300, height: 300, backgroundColor: 'green' }} />
-          <View style={{ width: 300, height: 300, backgroundColor: 'blue' }} />
-        </ScrollView>
-      </View>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={{ margin: 16, fontSize: 16, textAlign: 'center' }}>
+        {pressedCount > 0
+          ? `The button was pressed ${pressedCount} times!`
+          : "The button isn't pressed yet"}
+      </Text>
+      <Button
+        title="Press me"
+        onPress={() => setPressedCount(pressedCount + 1)}
+        disabled={pressedCount > 3}
+      />
     </View>
   );
 }
